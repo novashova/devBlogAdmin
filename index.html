@@ -11,14 +11,23 @@
   <div class="container py-5">
     <h1 class="mb-4">Blog Admin Interface</h1>
 
-    <!-- Blog List -->
-    <div id="blogList" class="mb-5"></div>
+<button type="button" class="btn btn-primary mb-4" data-bs-toggle="modal" data-bs-target="#postModal">
+  ➕ Add New Post
+</button>
 
-    <!-- Add New Blog Post -->
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">New Post</h5>
-        <form id="postForm">
+<div class="mb-4">
+  <input type="text" id="searchInput" class="form-control" placeholder="🔍 Filter posts by title or tag">
+</div>
+
+<div class="modal fade" id="postModal" tabindex="-1" aria-labelledby="postModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form id="postForm">
+        <div class="modal-header">
+          <h5 class="modal-title" id="postModalLabel">New Blog Post</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
           <div class="mb-3">
             <label for="title" class="form-label">Title</label>
             <input type="text" id="title" class="form-control" required>
@@ -28,27 +37,32 @@
             <input type="date" id="date" class="form-control" required>
           </div>
           <div class="mb-3">
-            <label for="content" class="form-label">Desc</label>
+            <label for="content" class="form-label">Content</label>
             <textarea id="content" class="form-control" rows="4" required></textarea>
           </div>
           <div class="mb-3">
-            <label for="tags" class="form-label">Tags (comma separated)</label>
+            <label for="tags" class="form-label">Tags (comma-separated)</label>
             <input type="text" id="tags" class="form-control">
           </div>
-          <button type="submit" class="btn btn-primary">Add Post</button>
-        </form>
-      </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-success">Save Post</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        </div>
+      </form>
     </div>
+  </div>
+</div>
 
     <hr class="my-5">
     <footer>
       <a href="https://validator.w3.org/nu/?doc=https%3A%2F%2Fnovashova.github.io%2FdevBlogAdmin%2F" target="_blank">Nu HTML Checker</a> |
       <a href="https://wave.webaim.org/report#/https://novashova.github.io/devBlogAdmin/" target="_blank">WAVE</a> |
-      <a href="https://github.com/yourusername/your-blog-admin-repo" target="_blank">Source Code</a> |
-      <a href="https://wireframe.cc/your-wireframe" target="_blank">Wireframe</a>
+      <a href="https://github.com/novashova/devBlogAdmin" target="_blank">Source Code</a> |
     </footer>
   </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script src="scripts/main.js"></script>
 </body>
 </html>

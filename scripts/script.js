@@ -1,18 +1,9 @@
 const DATA_URL = "https://novashova.github.io/devBlogData/posts.json";
-
 const blogList = document.getElementById("blogList");
 const postForm = document.getElementById("postForm");
+const searchInput = document.getElementById("searchInput");
 
-async function loadBlogPosts() {
-  try {
-    const res = await fetch(DATA_URL);
-    const posts = await res.json();
-    displayPosts(posts);
-  } catch (err) {
-    blogList.innerHTML = `<p class="text-danger">Failed to load blog data.</p>`;
-    console.error("Fetch error:", err);
-  }
-}
+let blogData = [];
 
 function displayPosts(posts) {
   blogList.innerHTML = "";
@@ -32,11 +23,16 @@ function displayPosts(posts) {
   });
 }
 
-let blogData = [];
-
-function deletePost(index) {
-  blogData.splice(index, 1);
-  displayPosts(blogData);
+async function loadBlogPosts() {
+  try {
+    const res = await fetch(DATA_URL);
+    if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+    blogData = await res.json();
+    displayPosts(blogData);
+  } catch (err) {
+    console.error('Error loading posts:', err);
+    blogList.innerHTML = `<div class="alert alert-danger">Failed to load blog posts.</div>`;
+  }
 }
 
 postForm.addEventListener("submit", (e) => {
@@ -56,8 +52,18 @@ postForm.addEventListener("submit", (e) => {
   }
 });
 
-window.addEventListener("DOMContentLoaded", async () => {
-  const res = await fetch(DATA_URL);
-  blogData = await res.json();
+function deletePost(index) {
+  blogData.splice(index, 1);
   displayPosts(blogData);
+}
+
+searchInput.addEventListener("input", (e) => {
+  const query = e.target.value.toLowerCase();
+  const filtered = blogData.filter(post =>
+    post.title.toLowerCase().includes(query) ||
+    post.tags.some(tag => tag.toLowerCase().includes(query))
+  );
+  displayPosts(filtered);
 });
+
+window.addEventListener("DOMContentLoaded", loadBlogPosts);
