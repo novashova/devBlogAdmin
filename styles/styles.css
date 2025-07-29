@@ -1,15 +1,15 @@
 body {
-  background-color: #f8f9fa;
+  background-color: #d9e3ed;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .container {
   max-width: 800px;
   margin: 40px auto;
-  background: white;
+  background: rgb(233, 199, 199);
   padding: 2rem;
   border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
 }
 
 h1 {
@@ -18,7 +18,7 @@ h1 {
 }
 
 .card {
-  border-left: 4px solid #0d6efd;
+  border-left: 4px solid #295eaf;
   border-radius: 10px;
 }
 
@@ -36,9 +36,9 @@ footer {
 
 footer a {
   margin: 0 0.5rem;
-  color: #6c757d;
+  color: #8897a3;
 }
 
 footer a:hover {
-  color: #0d6efd;
+  color: #084eb8;
 }

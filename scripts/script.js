@@ -1,11 +1,8 @@
-// Replace with the actual URL to your JSON data
-const DATA_URL = "https://novashova.github.io/devBlogData/blog-entries.json";
+const DATA_URL = "https://novashova.github.io/devBlogData/posts.json";
 
-// DOM references
 const blogList = document.getElementById("blogList");
 const postForm = document.getElementById("postForm");
 
-// Fetch and display blog data
 async function loadBlogPosts() {
   try {
     const res = await fetch(DATA_URL);
@@ -17,7 +14,6 @@ async function loadBlogPosts() {
   }
 }
 
-// Display posts in DOM
 function displayPosts(posts) {
   blogList.innerHTML = "";
   posts.forEach((post, index) => {
@@ -36,16 +32,13 @@ function displayPosts(posts) {
   });
 }
 
-// Temporary in-session blog array
 let blogData = [];
 
-// Delete post (in-session)
 function deletePost(index) {
   blogData.splice(index, 1);
   displayPosts(blogData);
 }
 
-// Handle Add Post form
 postForm.addEventListener("submit", (e) => {
   e.preventDefault();
   const title = postForm.title.value.trim();
@@ -63,7 +56,6 @@ postForm.addEventListener("submit", (e) => {
   }
 });
 
-// Initialize
 window.addEventListener("DOMContentLoaded", async () => {
   const res = await fetch(DATA_URL);
   blogData = await res.json();
